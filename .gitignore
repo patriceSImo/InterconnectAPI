@@ -1,0 +1,43 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+*.pot
+*.py[cod]
+__pycache__/
+db.sqlite3
+/media
+/staticfiles
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Docker
+docker-compose.yml
+Dockerfile
+
+# IDEs
+.idea/
+.project
+.pydevproject
+*.sublime-project
+*.sublime-workspace
+
+# Others
+*.swp
+*.swo
+*.DS_Store
