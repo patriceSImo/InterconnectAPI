@@ -1,0 +1,39 @@
+# Utilise l'image officielle de Python
+#FROM python:3.11-slim
+FROM python:3.11-buster
+
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+
+# Installer les dépendances système nécessaires pour mysqlclient
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libmariadb-dev-compat \
+    libmariadb-dev \
+    nano \ 
+    pkg-config \
+    && apt-get clean\
+    apt-get install -y mariadb-client && \
+    apt-get clean
+
+
+# Copier les fichiers de requirements.txt et installer les dépendances
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+# Installer les dépendances Python avec un timeout plus élevé
+RUN pip install --default-timeout=5000 -r requirements.txt
+
+# Copier le reste des fichiers du projet
+COPY . .
+
+# Copiez le fichier .env.local dans le répertoire approprié
+COPY .env.local /app/.env
+
+# Exposer le port sur lequel l'application va tourner
+EXPOSE 8000
+
+# Commande pour démarrer l'application
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

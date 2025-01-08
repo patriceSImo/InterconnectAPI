@@ -11,6 +11,9 @@ class APIToken(models.Model):
     token = models.UUIDField(default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField(default=get_default_expiration)
+    
+    class Meta:
+        db_table = 'apitoken'
 
     def __str__(self):
         return str(self.token)

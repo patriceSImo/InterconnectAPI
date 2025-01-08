@@ -14,10 +14,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='admin-login'),
     path('admin/', admin.site.urls),
-    path('wifirst/', include('wifirstAPI.urls.urls')),
+    path('comete/', include('wifirstAPI.urls.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('wifirst/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = custom_404_view

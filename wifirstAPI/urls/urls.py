@@ -16,7 +16,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('retry/<int:pk>/', RetryAPICallView.as_view(), name='retry_api_call'),
     path('forward/', ForwardAPICallView.as_view(), name='forward_api_call'),
-    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/generate/', generate_api_token, name='generate_api_token'),
     path('token/revoke/', RevokeAPITokenView.as_view(), name='revoke_api_token'),
 ]
