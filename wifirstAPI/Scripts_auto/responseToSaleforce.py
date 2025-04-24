@@ -6,10 +6,10 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Informations pour obtenir le token
-BASE_URL = "https://wifirst.my.salesforce.com"
+BASE_URL = "https://xxxxxxx.xx.salesforce.com"
 TOKEN_URL = f"{BASE_URL}/services/oauth2/token"
-CLIENT_ID = "3MVG9fTLmJ60pJ5K0o0WvIxguwqZc4RdDn_AlhU4.JJjMo0zUu74CQpnTSWnthy2EM5HgBdwi.G1a_I.oEhYV"
-CLIENT_SECRET = "D7182F27AD00E5B3B07A40D6AD2B88DF83FFA91E420DB2DC7067A51FBF8C1E72"
+CLIENT_ID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.G1a_I.oEhYV"
+CLIENT_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 
 def get_access_token():

@@ -2,7 +2,7 @@
 
 import django.db.models.deletion
 import uuid
-import wifirstAPI.models.apiTokensModels
+import xxxxxxxAPI.models.apiTokensModels
 from django.conf import settings
 from django.db import migrations, models
 
@@ -59,9 +59,9 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='APICallWifirst',
+            name='APICallwxxxxxt',
             fields=[
-                ('id_todo_from_wifirst', models.AutoField(primary_key=True, serialize=False)),
+                ('id_todo_from_wxxxxxt', models.AutoField(primary_key=True, serialize=False)),
                 ('id_api_call', models.CharField(max_length=191)),
                 ('contact_id', models.CharField(blank=True, max_length=255, null=True)),
                 ('id_salesforce', models.CharField(max_length=255)),
@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                 ('location', models.TextField(blank=True)),
                 ('site', models.TextField(blank=True)),
                 ('phone', models.CharField(max_length=20)),
-                ('pin_ulex_sender', models.TextField(blank=True)),
+                ('pin_uxxx_sender', models.TextField(blank=True)),
                 ('endpoint', models.CharField(blank=True, max_length=255, null=True)),
                 ('method', models.CharField(blank=True, max_length=10, null=True)),
                 ('headers', models.TextField(blank=True, null=True)),
@@ -84,7 +84,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.CharField(max_length=255)),
             ],
             options={
-                'db_table': 'todo_from_wifirst',
+                'db_table': 'todo_from_wxxxxxt',
             },
         ),
         migrations.CreateModel(
@@ -97,28 +97,28 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'db_table': 'wifirst_request_log',
+                'db_table': 'wxxxxxt_request_log',
             },
         ),
         migrations.CreateModel(
             name='APIStatsSelforce',
             fields=[
                 ('id_stats_selforce', models.AutoField(primary_key=True, serialize=False)),
-                ('id_comete_sender', models.CharField(blank=True, max_length=50)),
+                ('id_cxxxxe_sender', models.CharField(blank=True, max_length=50)),
                 ('salesforce_id', models.CharField(blank=True, max_length=50)),
                 ('salesforce_datetime', models.CharField(blank=True, max_length=191)),
-                ('final_comete_status', models.CharField(blank=True, max_length=50)),
-                ('comete_status', models.JSONField(blank=True, default=dict, null=True)),
-                ('comete_status_detail', models.JSONField(blank=True, default=dict, null=True)),
+                ('final_cxxxxe_status', models.CharField(blank=True, max_length=50)),
+                ('cxxxxe_status', models.JSONField(blank=True, default=dict, null=True)),
+                ('cxxxxe_status_detail', models.JSONField(blank=True, default=dict, null=True)),
                 ('nb_attempt', models.IntegerField(blank=True, null=True)),
-                ('ulex_id', models.TextField(blank=True)),
-                ('ulex_datetime', models.CharField(blank=True, max_length=191)),
+                ('uxxx_id', models.TextField(blank=True)),
+                ('uxxx_datetime', models.CharField(blank=True, max_length=191)),
                 ('inocx_id', models.TextField(blank=True)),
                 ('inocx_datetime', models.CharField(blank=True, max_length=191)),
                 ('inocx_status', models.JSONField(blank=True, default=dict, null=True)),
                 ('call_duration_details', models.JSONField(blank=True, default=dict, null=True)),
                 ('call_duration', models.CharField(blank=True, max_length=191)),
-                ('retour_ulex', models.JSONField(blank=True, default=dict, null=True)),
+                ('retour_uxxx', models.JSONField(blank=True, default=dict, null=True)),
                 ('update_salesforce', models.JSONField(blank=True, default=dict, null=True)),
                 ('raison_crash', models.TextField(blank=True)),
                 ('create_at', models.CharField(blank=True, max_length=25)),
@@ -132,7 +132,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id_inocx_task', models.AutoField(primary_key=True, serialize=False)),
                 ('id_cible', models.CharField(max_length=191)),
-                ('id_comete_sender', models.CharField(max_length=191)),
+                ('id_cxxxxe_sender', models.CharField(max_length=191)),
                 ('attempt_number', models.IntegerField(blank=True, null=True)),
                 ('contact_id', models.CharField(blank=True, max_length=255)),
                 ('id_salesforce', models.CharField(max_length=255)),
@@ -143,7 +143,7 @@ class Migration(migrations.Migration):
                 ('contact', models.CharField(max_length=255)),
                 ('location', models.TextField(blank=True)),
                 ('phone', models.CharField(max_length=20)),
-                ('pin_ulex_sender', models.CharField(max_length=191)),
+                ('pin_uxxx_sender', models.CharField(max_length=191)),
                 ('status', models.IntegerField(blank=True, null=True)),
                 ('payload_json', models.JSONField(blank=True, null=True)),
                 ('start_point', models.CharField(max_length=255)),
@@ -161,7 +161,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('token', models.UUIDField(default=uuid.uuid4, editable=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('expires_at', models.DateTimeField(default=wifirstAPI.models.apiTokensModels.get_default_expiration)),
+                ('expires_at', models.DateTimeField(default=wxxxxxtAPI.models.apiTokensModels.get_default_expiration)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -176,7 +176,7 @@ class Migration(migrations.Migration):
                 ('transmitted_status', models.IntegerField()),
                 ('transmitted_response', models.JSONField(blank=True, null=True)),
                 ('transmitted_at', models.DateTimeField(auto_now_add=True)),
-                ('api_call', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='wifirstAPI.apicall')),
+                ('api_call', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='wxxxxxtAPI.apicall')),
             ],
             options={
                 'db_table': 'transmitted_apicall',

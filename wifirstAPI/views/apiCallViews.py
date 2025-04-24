@@ -1,14 +1,14 @@
 import requests
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
-from ..models.apiCallModel import APICall, APICallWifirst
+from ..models.apiCallModel import APICall, APICallxxxxxxx
 from ..serializers.apiCallSerializers import APICallSerializer
 import json
 from io import BytesIO
 from django.http import JsonResponse
 import logging
 
-logger = logging.getLogger('wifirstAPI')
+logger = logging.getLogger('wxxxxxtAPI')
 
 class APICallViewSet(viewsets.ModelViewSet):
     queryset = APICall.objects.all()
@@ -63,9 +63,9 @@ class APICallViewSet(viewsets.ModelViewSet):
             logger.error(f"Erreur lors de la création de l'appel API: {e}")
             return Response({'error': 'Failed to save API call'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        # Essayer de dupliquer les données dans APICallWifirst
+        # Essayer de dupliquer les données dans APICallwxxxxxt
         try:
-            api_call_wifirst = APICallWifirst.objects.create(
+            api_call_wxxxxxt = APICallwxxxxxt.objects.create(
                 id_api_call=api_call.id_api_call,
                 contact_id=api_call.contact_id,
                 id_salesforce=api_call.id_salesforce,
@@ -84,11 +84,11 @@ class APICallViewSet(viewsets.ModelViewSet):
                 response=response_data,
                 created_at=api_call.created_at,
             )
-            logger.info(f"Appel API dupliqué dans Wifirst avec l'ID {api_call_wifirst.id_api_call}")
+            logger.info(f"Appel API dupliqué dans wxxxxxt avec l'ID {api_call_wxxxxxt.id_api_call}")
         except Exception as e:
-            logger.error(f"Échec de la duplication de l'appel API dans Wifirst: {e}")
+            logger.error(f"Échec de la duplication de l'appel API dans wxxxxxt: {e}")
             return Response(
-                {"error": f"Échec de la duplication de l'appel API dans Wifirst: {e}"},
+                {"error": f"Échec de la duplication de l'appel API dans wxxxxxt: {e}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 

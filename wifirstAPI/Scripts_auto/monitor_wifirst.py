@@ -2,8 +2,8 @@ import os
 import subprocess
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from wifirstAPI.models.apiCallModel import APICallWifirst,APICall
-from wifirstAPI.models.scriptsModel import InoCxTask
+from xxxxxxxAPI.models.apiCallModel import APICallxxxxxxx,APICall
+from wxxxxxtAPI.models.scriptsModel import InoCxTask
 import logging
 import colorlog
 
@@ -25,16 +25,16 @@ logger = logging.getLogger(__name__)
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
-@receiver(post_save, sender=APICallWifirst)
+@receiver(post_save, sender=APICallwxxxxxt)
 def execute_script_on_insert(sender, instance, created, **kwargs):
     logger.debug(f"Signal post_save received for {instance}")
     if created:
-        logger.debug(f"New APICallWifirst created with ID: {instance.id_todo_from_wifirst}")
-        entry_id = instance.id_todo_from_wifirst
+        logger.debug(f"New APICallwxxxxxt created with ID: {instance.id_todo_from_wxxxxxt}")
+        entry_id = instance.id_todo_from_wxxxxxt
         
         # Utiliser un chemin relatif basé sur le répertoire du script
         script_dir = os.path.dirname(__file__)
-        script_path = os.path.join(script_dir, '..', 'Scripts_auto', 'scriptUlexInit.py')
+        script_path = os.path.join(script_dir, '..', 'Scripts_auto', 'scriptuxxxInit.py')
         
         try:
             logger.debug(f"Executing script: {script_path} with entry ID: {entry_id}")

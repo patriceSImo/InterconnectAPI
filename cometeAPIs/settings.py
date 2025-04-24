@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-    'wifirstAPI',
+    'xxxxxxxAPI',
 ]
 
 # Middleware
@@ -31,9 +31,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'wifirstAPI.middlewares.saveReqmiddlewares.ReqStatsMiddleware',
-    'wifirstAPI.middlewares.middlewares.APICallLoggingMiddleware',
-    'wifirstAPI.middlewares.middlewares.APITokenMiddleware',
+    'xxxxxxxAPI.middlewares.saveReqmiddlewares.ReqStatsMiddleware',
+    'xxxxxxxAPI.middlewares.middlewares.APICallLoggingMiddleware',
+    'xxxxxxxAPI.middlewares.middlewares.APITokenMiddleware',
 ]
 
 # Configuration de l'URL principale
@@ -125,7 +125,7 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-8%dff8zsw9$ao*!gb7howk#n
 DEBUG = env('DEBUG')
 
 # Définir les hôtes autorisés
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['172.18.0.2','api-prod.comete.ai','127.0.0.1', 'localhost','185.97.144.32'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['172.18.0.2','api-prod.xxxxxx.xx','127.0.0.1', 'localhost','xxx.xx.xxx.xx'])
 
 
 
@@ -167,7 +167,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'EXCEPTION_HANDLER': 'wifirstAPI.utils.custom_exception_handler',
+    'EXCEPTION_HANDLER': 'xxxxxxxAPI.utils.custom_exception_handler',
 }
 
 # Configuration de JWT
@@ -238,7 +238,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'wifirstAPI': {
+        'xxxxxxxAPI': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,

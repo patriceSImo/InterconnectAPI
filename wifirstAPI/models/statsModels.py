@@ -2,21 +2,21 @@ from django.db import models
 
 class APIStatsSelforce(models.Model):
     id_stats_selforce = models.AutoField(primary_key=True)
-    id_comete_sender = models.CharField(max_length=50,blank=True)  # Id envoyé par comete pour le suivi
+    id_cxxxxe_sender = models.CharField(max_length=50,blank=True)  # Id envoyé par cxxxxe pour le suivi
     salesforce_id = models.CharField(max_length=50,blank=True)  # Salesforce ID
     salesforce_datetime = models.CharField(max_length=191, blank=True) # Date et heure de l'appel Salesforce
-    final_comete_status = models.CharField(max_length=50, blank=True) # Status final du traitement d'un cas afin de faciliter la recherche
-    comete_status = models.JSONField(null=True, blank=True, default=dict)  # Stocke l'historique des statuts Comete
-    comete_status_detail = models.JSONField(null=True, blank=True, default=dict)  # Stocke les détails des statuts Comete
+    final_cxxxxe_status = models.CharField(max_length=50, blank=True) # Status final du traitement d'un cas afin de faciliter la recherche
+    cxxxxe_status = models.JSONField(null=True, blank=True, default=dict)  # Stocke l'historique des statuts cxxxxe
+    cxxxxe_status_detail = models.JSONField(null=True, blank=True, default=dict)  # Stocke les détails des statuts cxxxxe
     nb_attempt = models.IntegerField(null=True, blank=True)  # Nombre de tentatives
-    ulex_id = models.TextField(blank=True)  # ID Ulex
-    ulex_datetime = models.CharField(max_length=191, blank=True)  # Date et heure Ulex
+    uxxx_id = models.TextField(blank=True)  # ID uxxx
+    uxxx_datetime = models.CharField(max_length=191, blank=True)  # Date et heure uxxx
     inocx_id = models.TextField(blank=True)  # ID Inocx
     inocx_datetime = models.CharField(max_length=191, blank=True)  # Date et heure Inocx
     inocx_status = models.JSONField(null=True, blank=True, default=dict) # Statut Inocx (NRP, Occupé, Traité)
     call_duration_details =models.JSONField(null=True, blank=True, default=dict)
     call_duration = models.CharField(max_length=191, blank=True)
-    retour_ulex = models.JSONField(null=True, blank=True, default=dict)
+    retour_uxxx = models.JSONField(null=True, blank=True, default=dict)
     update_salesforce = models.JSONField(null=True, blank=True, default=dict) 
     raison_crash = models.TextField(blank=True)
     create_at = models.CharField(max_length=25, blank=True)

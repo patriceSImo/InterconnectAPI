@@ -1,11 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from wifirstAPI.views.apiCallViews import APICallViewSet
-from wifirstAPI.views.auth_views import LoginView, LogoutView
-from wifirstAPI.views.reCallViews import RetryAPICallView
-from wifirstAPI.views.forwardApiCallViews import ForwardAPICallView
+from xxxxxxxAPI.views.apiCallViews import APICallViewSet
+from wxxxxxtAPI.views.auth_views import LoginView, LogoutView
+from wxxxxxtAPI.views.reCallViews import RetryAPICallView
+from wxxxxxtAPI.views.forwardApiCallViews import ForwardAPICallView
 from rest_framework_simplejwt.views import TokenRefreshView
-from wifirstAPI.views.apiTokenViews import generate_api_token, RevokeAPITokenView
+from wxxxxxtAPI.views.apiTokenViews import generate_api_token, RevokeAPITokenView
 
 router = DefaultRouter()
 router.register(r'calls', APICallViewSet, basename='calls/')

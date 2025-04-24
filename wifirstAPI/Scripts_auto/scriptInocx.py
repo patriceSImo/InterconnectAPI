@@ -7,44 +7,44 @@ import pytz
 import json
 from django.forms.models import model_to_dict
 
-# Ajout du chemin vers le dossier contenant 'wifirstAPI'
+# Ajout du chemin vers le dossier contenant 'xxxxxxxAPI'
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 try:
     # Configuration de Django
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cometeAPIs.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cxxxxeAPIs.settings')
     django.setup()
 except Exception as e:
     print(f"Erreur lors de l'initialisation de Django : {e}")
 
 # Importez les modèles après avoir configuré Django
-from wifirstAPI.models.scriptsModel import InoCxTask
-from wifirstAPI.models.statsModels import APIStatsSelforce
+from xxxxxxxAPI.models.scriptsModel import InoCxTask
+from xxxxxxxAPI.models.statsModels import APIStatsSelforce
 
 # Configuration des logs
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Correspondance entre `displayed_number` et `id_campagne`
 campaign_map = {
-    '+33170704670': 114,
-    '+33170704673': 117,
-    '+33170809848': 115,
-    '+33172753400': 116,
-    '+33173309572': 118,
-    '+33186650619': 120,
-    '+33186650621': 121
+    '+33xxxxxxx': 114,
+    '+33xxxxxxx': 117,
+    '+33xxxxxxx': 115,
+    '+33xxxxxxx': 116,
+    '+33xxxxxxx': 118,
+    '+33xxxxxxx': 120,
+    '+33xxxxxxx': 121
 }
 
 id_masque = 44
 priorite = 30
 
 # URL de l'API (initialement sans `id_campagne`)
-url_template = "https://comete.ino.cx/api/voicecampaigns/{}/targets"
+url_template = "https://cxxxxe.xxx.cx/api/xxxxxxxxxxxx/{}/targets"
 
 headers = {
-    "X-INOCX-TOKEN": "11a1b8c84f82416f9abbe4bdebb3d3a6",
-    "X-INOCX-SECRET": "a18936fc93ce4806b5393505f9ef0fe8",
-    "X-INOCX-USERNAME": "matthieu.ganivet@comete.ai",
+    "X-INOCX-TOKEN": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "X-INOCX-SECRET": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "X-INOCX-USERNAME": "xxxxxxxxxxxxx@xxxxxx.xx",
     "Content-Type": "application/json",
     "User-Agent": "Server-To-Server-Request"
 }
@@ -71,29 +71,29 @@ def get_date_conv(data):
         return None
 
 def update_stats(id, element, value):
-    # Récupérer l'instance correspondant à id_comete_sender
-    instance = APIStatsSelforce.objects.filter(id_comete_sender=id).first()
+    # Récupérer l'instance correspondant à id_cxxxxe_sender
+    instance = APIStatsSelforce.objects.filter(id_cxxxxe_sender=id).first()
 
     # Vérifier que l'instance existe avant de procéder
     if not instance:
-        raise ValueError("L'instance avec cet id_comete_sender n'existe pas")
+        raise ValueError("L'instance avec cet id_cxxxxe_sender n'existe pas")
 
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    # Mettre à jour 'comete_status'
-    if element == "comete_status":
-        if not isinstance(instance.comete_status, dict):
-            instance.comete_status = {}
+    # Mettre à jour 'cxxxxe_status'
+    if element == "cxxxxe_status":
+        if not isinstance(instance.cxxxxe_status, dict):
+            instance.cxxxxe_status = {}
         # Ajouter la nouvelle valeur avec un index incrémental et un horodatage
-        new_key = str(len(instance.comete_status) + 1)
-        instance.comete_status[new_key] = {"value": value, "timestamp": current_time}
+        new_key = str(len(instance.cxxxxe_status) + 1)
+        instance.cxxxxe_status[new_key] = {"value": value, "timestamp": current_time}
 
-    # Mettre à jour 'comete_status_detail'
-    elif element == "comete_status_detail":
-        if not isinstance(instance.comete_status_detail, dict):
-            instance.comete_status_detail = {}
-        new_key = str(len(instance.comete_status_detail) + 1)
-        instance.comete_status_detail[new_key] = {"value": value, "timestamp": current_time}
+    # Mettre à jour 'cxxxxe_status_detail'
+    elif element == "cxxxxe_status_detail":
+        if not isinstance(instance.cxxxxe_status_detail, dict):
+            instance.cxxxxe_status_detail = {}
+        new_key = str(len(instance.cxxxxe_status_detail) + 1)
+        instance.cxxxxe_status_detail[new_key] = {"value": value, "timestamp": current_time}
 
     # Ajouter d'autres éléments à mettre à jour comme 'inocx_status', 'call_duration', etc.
     elif element == "inocx_status":
@@ -108,11 +108,11 @@ def update_stats(id, element, value):
         new_key = str(len(instance.call_duration) + 1)
         instance.call_duration_details[new_key] = {"value": value, "timestamp": current_time}
 
-    elif element == "retour_ulex":
-        if not isinstance(instance.retour_ulex, dict):
-            instance.retour_ulex = {}
-        new_key = str(len(instance.retour_ulex) + 1)
-        instance.retour_ulex[new_key] = {"value": value, "timestamp": current_time}
+    elif element == "retour_uxxx":
+        if not isinstance(instance.retour_uxxx, dict):
+            instance.retour_uxxx = {}
+        new_key = str(len(instance.retour_uxxx) + 1)
+        instance.retour_uxxx[new_key] = {"value": value, "timestamp": current_time}
 
     # Sauvegarder l'instance après mise à jour
     instance.save()
@@ -178,7 +178,7 @@ def process_new_entry_inocx(data):
             response_json = response.json()
             id_cible = response_json['value']['cleanTargets'][0]['id']
             #création de la table inocx_task_followup
-            id_comete_sender= data.get("id_api_call")
+            id_cxxxxe_sender= data.get("id_api_call")
             
             try:
                 response_json = response.json()
@@ -187,7 +187,7 @@ def process_new_entry_inocx(data):
                 task_followup = InoCxTask.objects.create(
                     id_cible=id_cible,  # Adaptez cette clé en fonction de votre réponse JSON
                     attempt_number=0,  # Exemple : tentative initiale
-                    id_comete_sender=data.get("id_api_call"),
+                    id_cxxxxe_sender=data.get("id_api_call"),
                     contact_id=data.get("contact_id"),
                     id_salesforce=data.get("id_salesforce"),
                     datetime_alarm=get_date_conv(data.get("datetime_alarm")),
@@ -197,7 +197,7 @@ def process_new_entry_inocx(data):
                     contact=data.get("contact"),
                     location=data.get("location"),
                     phone=data.get("phone"),
-                    pin_ulex_sender=data.get("pin_ulex_sender"),
+                    pin_uxxx_sender=data.get("pin_uxxx_sender"),
                     status=response.status_code,
                     start_point="premier appel",
                     code_back_call="START",
@@ -207,26 +207,26 @@ def process_new_entry_inocx(data):
                 
             except json.JSONDecodeError:
                 logging.error("impossoble de décoder la reponse en json")
-                APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(raison_crash = e,)
+                APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(raison_crash = e,)
             
-            update_stats(id_comete_sender,"comete_status","inoCx CALL 1 Ok")
-            APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(final_comete_status="inoCx CALL 1 Ok")
-            APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(inocx_datetime=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), inocx_id= id_cible)
-            update_stats(id_comete_sender,"comete_status_datail",f"inoCx id_cible :{id_cible}")
-            update_stats(id_comete_sender,"inocx_status","CALL CREATE")
+            update_stats(id_cxxxxe_sender,"cxxxxe_status","inoCx CALL 1 Ok")
+            APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(final_cxxxxe_status="inoCx CALL 1 Ok")
+            APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(inocx_datetime=datetime.now().strftime("%Y-%m-%d %H:%M:%S"), inocx_id= id_cible)
+            update_stats(id_cxxxxe_sender,"cxxxxe_status_datail",f"inoCx id_cible :{id_cible}")
+            update_stats(id_cxxxxe_sender,"inocx_status","CALL CREATE")
             
         else:
             
             logging.error(f"Erreur lors de l'envoi des données à l'API. zzz Statut HTTP: {response.status_code}, Réponse: {response.text}")
-            update_stats(id_comete_sender,"comete_status","inoCx KO")
-            APIStatsSelforce.objects.filter(id=id_comete_sender).update(comete_status="inoCx KO")
-            update_stats(id_comete_sender,"inocx_status",response.text)
+            update_stats(id_cxxxxe_sender,"cxxxxe_status","inoCx KO")
+            APIStatsSelforce.objects.filter(id=id_cxxxxe_sender).update(cxxxxe_status="inoCx KO")
+            update_stats(id_cxxxxe_sender,"inocx_status",response.text)
 
     except Exception as e:
         logging.error(f"Erreur lors du traitement de l'entrée avec les données ffff fournies: {e}")
-        update_stats(data.get("id_api_call"),"comete_status","inoCx KO")
-        APIStatsSelforce.objects.filter(id=id_comete_sender).update(comete_status="inoCx KO")
-        APIStatsSelforce.objects.filter(id_comete_sender=data.get("id_api_call")).update(raison_crash=e)
+        update_stats(data.get("id_api_call"),"cxxxxe_status","inoCx KO")
+        APIStatsSelforce.objects.filter(id=id_cxxxxe_sender).update(cxxxxe_status="inoCx KO")
+        APIStatsSelforce.objects.filter(id_cxxxxe_sender=data.get("id_api_call")).update(raison_crash=e)
         
 
     finally:

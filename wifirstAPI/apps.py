@@ -1,11 +1,11 @@
 from django.apps import AppConfig
 
-class WifirstAPIConfig(AppConfig):
+class xxxxxxxAPIConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'wifirstAPI'
+    name = 'wxxxxxtAPI'
 
     def ready(self):
-        import wifirstAPI.Scripts_auto.scriptInocx
-        import wifirstAPI.Scripts_auto.monitor_wifirst
-        import wifirstAPI.Scripts_auto.scriptUlexInit
+        import wxxxxxtAPI.Scripts_auto.scriptInocx
+        import wxxxxxtAPI.Scripts_auto.monitor_wxxxxxt
+        import wxxxxxtAPI.Scripts_auto.scriptuxxxInit
         

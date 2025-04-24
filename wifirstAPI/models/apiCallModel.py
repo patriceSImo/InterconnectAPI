@@ -54,8 +54,8 @@ class APICall(models.Model):
         return {}  # Si ce n'est ni une chaîne JSON valide ni un dictionnaire, retourner un dictionnaire vide
 
 
-class APICallWifirst(models.Model):
-    id_todo_from_wifirst = models.AutoField(primary_key=True)
+class APICallxxxxxxx(models.Model):
+    id_todo_from_wxxxxxt = models.AutoField(primary_key=True)
     id_api_call = models.CharField(max_length=191)  # Limitez la longueur à 191 caractères
     contact_id = models.CharField(max_length=255, null=True, blank=True)
     id_salesforce = models.CharField(max_length=255)
@@ -67,7 +67,7 @@ class APICallWifirst(models.Model):
     location = models.TextField(blank =True)
     site = models.TextField(blank=True)
     phone = models.CharField(max_length=20)
-    pin_ulex_sender = models.TextField(blank=True)
+    pin_uxxx_sender = models.TextField(blank=True)
     endpoint = models.CharField(max_length=255, null=True, blank=True)
     method = models.CharField(max_length=10, null=True, blank=True)
     headers = models.TextField(null=True, blank=True)
@@ -78,7 +78,7 @@ class APICallWifirst(models.Model):
     created_at = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'todo_from_wifirst'
+        db_table = 'todo_from_wxxxxxt'
     
     def clean(self):
         """Appelée avant la sauvegarde pour valider et corriger les champs JSON."""
@@ -131,4 +131,4 @@ class APIRequestLog(models.Model):
         return f"Request Log - Status: {self.response_status} at {self.created_at}"
 
     class Meta:
-        db_table = 'wifirst_request_log'
+        db_table = 'wxxxxxt_request_log'

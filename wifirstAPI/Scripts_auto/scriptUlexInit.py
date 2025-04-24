@@ -7,18 +7,18 @@ import os,re
 import django
 from django.forms.models import model_to_dict
 
-# Ajout du chemin vers le dossier contenant 'cometeAPIs'
+# Ajout du chemin vers le dossier contenant 'cxxxxeAPIs'
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 try:
     # Configuration de Django
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cometeAPIs.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cxxxxeAPIs.settings')
     django.setup()
 except Exception as e:
     print(f"Erreur lors de l'initialisation de Django : {e}")
     
-from wifirstAPI.models.apiCallModel import APICall, APICallWifirst
-from wifirstAPI.models.statsModels import APIStatsSelforce
-from wifirstAPI.Scripts_auto.scriptInocx import process_new_entry_inocx,update_stats
+from xxxxxxxAPI.models.apiCallModel import APICall, APICallxxxxxxx
+from wxxxxxtAPI.models.statsModels import APIStatsSelforce
+from wxxxxxtAPI.Scripts_auto.scriptInocx import process_new_entry_inocx,update_stats
 
 # Configuration des logs
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -56,7 +56,7 @@ def validate_datetime_alarm(data):
         logging.error(f"Erreur de validation de la date : {e}")
         return None
 
-def send_to_ulex (data):
+def send_to_uxxx (data):
     # Vérifier si datetime_alarm est présent dans les données
     date_format = None
     if data.get("datetime_alarm"):
@@ -80,11 +80,11 @@ def send_to_ulex (data):
     #extraction des 6 premiers chiffres
     pin = pin_tem[-8:]
     
-    # configuration de la requette a envoyer à Ulex
-    endpoint = f"https://wifirst.f1.voxibot.net/api/session.php?param=4OIl6CbS0D0nNj3aeoJbfWZJg76LT7:wifirst@wifirst&phone={num}&pin={pin}"
+    # configuration de la requette a envoyer à uxxx
+    endpoint = f"https://wxxxxxt.xx.xxxxxxxx.net/api/session.php?param=xxxxxxxxxxxxxxxxxxxx:wxxxxxt@wxxxxxt&phone={num}&pin={pin}"
     data_send = {
         "context": {
-            "id_comete_sender": data.get("id_api_call"),
+            "id_cxxxxe_sender": data.get("id_api_call"),
             "customer_name":data.get("contact"),
             "datetime_alarm":date_format,
             "location":data.get("location"),
@@ -100,7 +100,7 @@ def send_to_ulex (data):
         'Accept': 'application/json'
     }
     data_encode = json.dumps(data_send, ensure_ascii=False).encode('utf-8')
-    logging.debug(f" la data envoyé à ulex est la : {data_send}")
+    logging.debug(f" la data envoyé à uxxx est la : {data_send}")
     try:
         # Envoyer les données à l'API via une requête POST
         response = requests.post(endpoint, data=data_encode, headers=headers)
@@ -116,10 +116,10 @@ def send_to_ulex (data):
 def process_new_entry(entry_id):
     try:
         logging.debug(f"Connexion à la base de données réussie pour l'entrée ID {entry_id}.")
-        data_found =  APICallWifirst.objects.filter(id_todo_from_wifirst=entry_id).first()
+        data_found =  APICallwxxxxxt.objects.filter(id_todo_from_wxxxxxt=entry_id).first()
         # Convertir l'objet Django en dictionnaire
         data = model_to_dict(data_found)
-        id_comete_sender = data.get("id_api_call")
+        id_cxxxxe_sender = data.get("id_api_call")
 
         if not data:
             logging.error(f"Aucune donnée trouvée pour l'ID {entry_id}")
@@ -127,18 +127,18 @@ def process_new_entry(entry_id):
 
         try:
             new_stat = APIStatsSelforce.objects.create(
-                    id_comete_sender = data.get("id_api_call"),
+                    id_cxxxxe_sender = data.get("id_api_call"),
                     salesforce_id = data.get("id_salesforce"),
-                    final_comete_status = "SALESFORCE INIT",
+                    final_cxxxxe_status = "SALESFORCE INIT",
                     create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 )
 
         except Exception as e:
             logging.debug(f"Une erreur est survenue lors de la création de la ligne statistique : {e}")
-            APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(raison_crash = e,)
+            APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(raison_crash = e,)
         
-        #Creation de la session chez ulex
-        response = send_to_ulex(data)
+        #Creation de la session chez uxxx
+        response = send_to_uxxx(data)
         response_text = response.content.decode('utf-8-sig')
 
         # Vérifier si la requête a été exécutée avec succès
@@ -146,34 +146,34 @@ def process_new_entry(entry_id):
             logging.info(f"Données envoyées avec succès à l'API. Réponse: {response_text}")
             
             response_data = json.loads(response_text)
-            #mise à jour champs pin_ulex_sender dans la table todo_from_ulex
+            #mise à jour champs pin_uxxx_sender dans la table todo_from_uxxx
             pin = response_data.get("pin")
             logging.debug(f"la valeur du pin mis en base est :{pin}")
             
-            update_stats(id_comete_sender,"comete_status_detail","Ulex session 1 OK")
-            APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(final_comete_status="Ulex session 1 OK")
-            update_stats(id_comete_sender,"comete_status_detail",pin )
-            APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(ulex_id=pin)
+            update_stats(id_cxxxxe_sender,"cxxxxe_status_detail","uxxx session 1 OK")
+            APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(final_cxxxxe_status="uxxx session 1 OK")
+            update_stats(id_cxxxxe_sender,"cxxxxe_status_detail",pin )
+            APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(uxxx_id=pin)
             
             try:
-                logging.debug(f"Execution du script pour inoCx avec l'id_todo_from_wifirst : {entry_id}")
+                logging.debug(f"Execution du script pour inoCx avec l'id_todo_from_wxxxxxt : {entry_id}")
                 process_new_entry_inocx(data_found)
 
             except Exception as e:
                 logging.error(f"erreur lors de l'exécution du script de inoCx xxx2: {e}")
-                APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(raison_crash = e,)
+                APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(raison_crash = e,)
 
         else:
             ###
-            # envois de reponse finale à selforce avec un echec du coté de ulex
+            # envois de reponse finale à selforce avec un echec du coté de uxxx
             #
             logging.error(f"Erreur lors de l'envoi des données à xxx l'API. Statut HTTP: {response.status_code}, Réponse: {response}")
             #fermer le ticket dans selforce avec comme cmom creation du boot off
             
     except Exception as e:
         logging.error(f"Erreur lors du traitement de l'entrée ID {entry_id}: {e}")
-        APIStatsSelforce.objects.filter(id_comete_sender=id_comete_sender).update(raison_crash = e,)
-        update_stats(id_comete_sender,"comete_status_detail",e)
+        APIStatsSelforce.objects.filter(id_cxxxxe_sender=id_cxxxxe_sender).update(raison_crash = e,)
+        update_stats(id_cxxxxe_sender,"cxxxxe_status_detail",e)
         
 
 if __name__ == "__main__":
